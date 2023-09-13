@@ -69,7 +69,7 @@
     },
     {
       "lean": "lemma mul_add (t a b : mynat) : t * (a + b) = t * a + t * b :=\n",
-      "editorText": "sorry"
+      "editorText": "induction t with t hi,\r\n-- Base: \r\nrw zero_mul (a + b),\r\nrw zero_mul b,\r\nrw add_zero, -- Não consegui dar target\r\nrw zero_mul,\r\nrefl,\r\n-- Passo Indutivo:\r\n\r\n"
     },
     {
       "lean": "lemma mul_assoc (a b c : mynat) : (a * b) * c = a * (b * c) :=\n",
