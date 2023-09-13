@@ -54,15 +54,18 @@
     },
     {
       "lean": "lemma zero_mul (m : mynat) : 0 * m = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction m with m hi,\r\nrw mul_zero 0,\r\nrefl,\r\n\r\nrw mul_succ 0 m,\r\nrw hi, \r\nrefl,\r\n"
     },
     {
       "lean": "lemma mul_one (m : mynat) : m * 1 = m :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero,\r\nrw mul_succ,\r\nrw mul_zero,\r\nrw zero_add,\r\nrefl,\r\n\r\n\r\n"
     },
     {
       "lean": "lemma one_mul (m : mynat) : 1 * m = m :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero, -- No começo me pareceu melhor.\r\ninduction m with m hi,\r\nrw mul_zero,\r\nrefl,\r\n\r\nrw mul_succ,\r\n-- rw hi one_eq_succ_zero,\r\nrw hi,\r\nrw add_succ m 0,\r\nrw add_zero m,\r\nrefl,\r\n\r\n\r\n"
     },
     {
       "lean": "lemma mul_add (t a b : mynat) : t * (a + b) = t * a + t * b :=\n",
