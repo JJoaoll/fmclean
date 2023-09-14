@@ -74,7 +74,7 @@
     },
     {
       "lean": "lemma mul_assoc (a b c : mynat) : (a * b) * c = a * (b * c) :=\n",
-      "editorText": "sorry"
+      "editorText": "induction c with c hc,\r\n-- Base:\r\nrw mul_zero (a * b),\r\nrw mul_zero b,\r\nrw mul_zero a,\r\nrefl,\r\n-- Passo indutivo:\r\nrw mul_succ,\r\nrw hc,\r\nrw mul_succ,\r\nsorry,"
     },
     {
       "lean": "lemma succ_mul (a b : mynat) : succ a * b = a * b + b :=\n",
