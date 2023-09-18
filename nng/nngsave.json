@@ -79,7 +79,8 @@
     },
     {
       "lean": "lemma succ_mul (a b : mynat) : succ a * b = a * b + b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw add_comm (a*b) b,\r\n-- ← \r\ninduction b with b' hb,\r\n-- Base:\r\nrw mul_zero,\r\nrw mul_zero,\r\nsimp,\r\n\r\n-- Passo indutivo:\r\nrw mul_succ,\r\nrw add_succ,\r\nrw hb,\r\nrw add_assoc,\r\nrw add_comm,\r\nrw ← add_succ,\r\nrw mul_succ,\r\nrw add_comm (succ b') (a * b' + a),\r\nrefl,\r\n"
     },
     {
       "lean": "lemma add_mul (a b t : mynat) : (a + b) * t = a * t + b * t :=\n",
