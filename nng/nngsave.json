@@ -109,7 +109,8 @@
     },
     {
       "lean": "lemma pow_one (a : mynat) : a ^ (1 : mynat) = a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero,\r\nrw pow_succ,\r\nrw pow_zero, -- sim, eu fiz do jeito mais longo XD!\r\nrw one_eq_succ_zero,\r\nrw succ_mul,\r\nrw zero_mul,\r\nrw zero_add,\r\nrefl,"
     },
     {
       "lean": "lemma one_pow (m : mynat) : (1 : mynat) ^ m = 1 :=\n",
