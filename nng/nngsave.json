@@ -169,15 +169,18 @@
     },
     {
       "lean": "example (P Q F : Type) : (P → Q) → ((Q → F) → (P → F)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro p, \r\nintro q,\r\nintro r,\r\nexact q(p(r)),"
     },
     {
       "lean": "example (P Q : Type) : (P → Q) → ((Q → empty) → (P → empty)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros f h p,\r\nexact h(f(p)),\r\n--apply h,"
     },
     {
       "lean": "example (A B C D E F G H I J K L : Type)\n(f1 : A → B) (f2 : B → E) (f3 : E → D) (f4 : D → A) (f5 : E → F)\n(f6 : F → C) (f7 : B → C) (f8 : F → G) (f9 : G → J) (f10 : I → J)\n(f11 : J → I) (f12 : I → H) (f13 : E → H) (f14 : H → K) (f15 : I → L)\n : A → L :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro a,\r\nhave b := f1 a,\r\nhave c := f2 b,\r\nhave d := f5 c,\r\nhave e := f8 d,\r\nhave h := f9 e,\r\nhave j := f11 h,\r\nhave l := f15 j,\r\nexact l,\r\n\r\n"
     },
     {
       "lean": "example (P Q : Prop) (p : P) (h : P → Q) : Q :=\n",
