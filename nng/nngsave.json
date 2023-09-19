@@ -164,7 +164,8 @@
     },
     {
       "lean": "example (P Q R : Type) : (P → (Q → R)) → ((P → Q) → (P → R)) :=\n",
-      "editorText": "intro f,\r\nintro h, \r\nintro p,\r\n--have t:P -> Q := f(h), TEM PARENTESES IMPLICITOS!!!!! \r\nhave j := f(p),\r\n-- have j : Q → R := f p,\r\n\r\n\r\n\r\n"
+      "isSolved": true,
+      "editorText": "intro f,\r\nintro h, \r\nintro p,\r\n--have t:P -> Q := f(h), TEM PARENTESES IMPLICITOS!!!!! \r\nhave j := f(p),\r\nexact j(h(p)),\r\n-- have j : Q → R := f p,\r\n\r\n\r\n\r\n"
     },
     {
       "lean": "example (P Q F : Type) : (P → Q) → ((Q → F) → (P → F)) :=\n",
