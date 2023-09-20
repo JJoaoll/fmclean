@@ -250,7 +250,7 @@
     {
       "lean": "lemma iff_trans (P Q R : Prop) : (P ↔ Q) → (Q ↔ R) → (P ↔ R) :=\n",
       "isSolved": true,
-      "editorText": "intro h,\r\n--cases h with p q,\r\nintro h',\r\n--cases h' with q r,\r\nrw h,\r\nrw h',\r\n"
+      "editorText": "intro h,\r\n--cases h with p q,\r\nintro h',\r\n--cases h' with q r,\r\ncases h with f q,\r\ncases h' with q' r,\r\nsplit,\r\nintro p,\r\napply q',\r\napply f,\r\nexact p,\r\n-- outra parte:\r\nintro p,\r\napply q,\r\napply r,\r\nexact p,\r\n"
     },
     {
       "lean": "example (P Q : Prop) : Q → (P ∨ Q) :=\n",
@@ -279,19 +279,23 @@
     },
     {
       "lean": "theorem succ_inj' {a b : mynat} (hs : succ(a) = succ(b)) :  a = b := \n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "have h_inj : a = b :=  succ_inj(hs),\r\nexact h_inj,"
     },
     {
       "lean": "theorem succ_succ_inj {a b : mynat} (h : succ(succ(a)) = succ(succ(b))) :  a = b := \n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "apply succ_inj,\r\napply succ_inj,\r\nexact h,"
     },
     {
       "lean": "theorem succ_eq_succ_of_eq {a b : mynat} : a = b → succ(a) = succ(b) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nrw h,\r\nrefl,"
     },
     {
       "lean": "theorem succ_eq_succ_iff (a b : mynat) : succ a = succ b ↔ a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "split,\r\nintro h,\r\napply succ_inj,\r\nexact h,\r\nintro h,\r\napply succ_eq_succ_of_eq,\r\nexact h,\r\n--rw h,\r\n--refl,"
     },
     {
       "lean": "theorem add_right_cancel (a t b : mynat) : a + t = b + t → a = b :=\n",
