@@ -299,15 +299,18 @@
     },
     {
       "lean": "theorem add_right_cancel (a t b : mynat) : a + t = b + t → a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction t with t ht,\r\n-- Base:\r\nrw add_zero,\r\nrw add_zero,\r\nintro h,\r\nexact h,\r\n-- Passo Indutivo:\r\n--rw add_succ,\r\n--rw add_succ,\r\nintro ht',\r\nrw add_succ a t at ht',\r\nrw add_succ b t at ht',\r\nhave j : a + t = b + t := succ_inj ht',\r\nhave l := ht j,\r\nexact l,\r\n--apply ht,\r\n--exact j,\r\n\r\n\r\n\r\n"
     },
     {
       "lean": "theorem add_left_cancel (t a b : mynat) : t + a = t + b → a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw add_comm t a at ⊢,\r\nrw add_comm t b at ⊢,\r\napply add_right_cancel, -- \"Tohmale. Pai é gênio. \" "
     },
     {
       "lean": "theorem add_right_cancel_iff (t a b : mynat) :  a + t = b + t ↔ a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "-- Modo preguiça?\r\nsplit,\r\napply add_right_cancel,\r\nintro hab,\r\ninduction t with t ht,\r\nrw add_zero a,\r\nrw add_zero b,\r\nexact hab,\r\nrw add_succ,\r\nrw add_succ,\r\nrw ht,\r\nrefl,\r\n\r\n\r\n"
     },
     {
       "lean": "lemma eq_zero_of_add_right_eq_self {a b : mynat} : a + b = a → b = 0 :=\n",
