@@ -314,11 +314,13 @@
     },
     {
       "lean": "lemma eq_zero_of_add_right_eq_self {a b : mynat} : a + b = a → b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "--induction b with b hb,\r\n-- cc,\r\nintro h,\r\nrw <- add_zero a at h,\r\nrw add_assoc at h,\r\nrw zero_add at h,\r\napply add_left_cancel a b 0,\r\nexact h,\r\n\r\n\r\n--refl,\r\n--intro h,\r\n--rw <- add_zero a at h,\r\n--rw add_succ at h,\r\n--rw add_comm at h,\r\n--rw <- add_assoc at h,\r\n--rw add_comm b a at h,\r\n--rw <- add_succ at h,\r\n--rw add_assoc at h,\r\n--rw add_succ at h,\r\n--rw add_zero b at h,\r\n--apply add_left_cancel a (succ b) 0 at h,\r\n"
     },
     {
       "lean": "theorem succ_ne_zero (a : mynat) : succ a ≠ 0 := \n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "symmetry,\r\nexact zero_ne_succ a,"
     },
     {
       "lean": "lemma add_left_eq_zero {{a b : mynat}} (H : a + b = 0) : b = 0 :=\n",
