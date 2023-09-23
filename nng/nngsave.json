@@ -374,23 +374,28 @@
     },
     {
       "lean": "theorem le_succ (a b : mynat) : a ≤ b → a ≤ (succ b) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\ncases h with c hc,\r\nrw hc,\r\nuse c+1,\r\nrefl, -- WTF? \r\n-- Como já to fazendo dnv eu fiz conforme sugerido ali abaixo.\r\n-- Quando eu tentei copiar oq ELE MANDA copiar, lá embaixo, o meu nng bugou. Acho q ele detectou o control c potente. Zoado já q ele msm qm me mandou fazer, ne..."
     },
     {
       "lean": "lemma zero_le (a : mynat) : 0 ≤ a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "use a,\r\nrw add_comm,\r\nrefl,"
     },
     {
       "lean": "theorem le_trans (a b c : mynat) (hab : a ≤ b) (hbc : b ≤ c) : a ≤ c :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw le_iff_exists_add at hab hbc ⊢,\r\ncases hbc with c hc,\r\ncases hab with d hd,\r\nrw hd at hc,\r\nuse d+c,\r\nrw <- add_assoc,\r\nexact hc,\r\n"
     },
     {
       "lean": "theorem le_antisymm (a b : mynat) (hab : a ≤ b) (hba : b ≤ a) : a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases hab with c hc,\r\ncases hba with d hd,\r\nrw hc at hd,\r\nrw add_assoc at hd,\r\nsymmetry at hd,\r\nhave h := eq_zero_of_add_right_eq_self hd,\r\n\r\ncases c,\r\n  symmetry at hc,\r\n  exact hc,\r\n\r\n  rw succ_add at h,\r\n  exfalso,\r\n  apply zero_ne_succ (c + d),\r\n  symmetry at h,\r\n  exact h,\r\n  \r\n "
     },
     {
       "lean": "lemma le_zero (a : mynat) (h : a ≤ 0) : a = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases a,\r\nrefl,\r\ncases h with z hz,\r\nrw succ_add at hz,\r\nexfalso,\r\napply zero_ne_succ (a + z),\r\nexact hz,\r\n"
     },
     {
       "lean": "lemma succ_le_succ (a b : mynat) (h : a ≤ b) : succ a ≤ succ b :=\n",
