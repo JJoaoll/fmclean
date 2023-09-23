@@ -399,7 +399,8 @@
     },
     {
       "lean": "lemma succ_le_succ (a b : mynat) (h : a ≤ b) : succ a ≤ succ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "--rw le_iff_exists_add at h,\r\n--cases h with c hc\r\nrw le_iff_exists_add,\r\ncases h with k hk,\r\nuse k,\r\nrw hk at ⊢,\r\nrw add_comm,\r\nrw <- add_succ,\r\nrw add_comm,\r\nrefl,\r\n\r\n\r\n\r\n\r\n"
     },
     {
       "lean": "theorem le_total (a b : mynat) : a ≤ b ∨ b ≤ a :=\n",
