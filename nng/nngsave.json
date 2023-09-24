@@ -404,7 +404,8 @@
     },
     {
       "lean": "theorem le_total (a b : mynat) : a ≤ b ∨ b ≤ a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction a with a ha generalizing b,\r\n  cases b,\r\n    use 0,\r\n    refl,\r\n  have j := zero_le (succ b),\r\n  left,\r\n  exact j,\r\n\r\n  induction b with b hb,\r\n    have j := zero_le (succ a),\r\n  right,\r\n  exact j,\r\n------------------------------\r\n  cases hb,\r\n    cases a,\r\n      left,\r\n      apply succ_le_succ,\r\n      exact zero_le b,\r\n\r\n      cases hb with k hk,\r\n      rw succ_add at hk,\r\n      rw add_comm at hk,\r\n      rw <- succ_add at hk,\r\n      left,\r\n      use (succ k),\r\n      rw add_succ,\r\n      apply succ_eq_succ_of_eq,\r\n      rw succ_add,\r\n      rw <- add_succ,\r\n      rw add_comm,\r\n      exact hk,\r\n\r\n      have j:= ha b,\r\n      cases j,\r\n        left,\r\n        apply succ_le_succ,\r\n        exact j,\r\n\r\n        right,\r\n        apply succ_le_succ,\r\n        exact j,\r\n        \r\n\r\n\r\n\r\n\r\n\r\n     \r\n\r\n\r\n      \r\n\r\n\r\n\r\n\r\n\r\n    \r\n   \r\n    \r\n\r\n \r\n  \r\n\r\n\r\n  "
     },
     {
       "lean": "lemma le_succ_self (a : mynat) : a ≤ succ a :=\n",
