@@ -409,15 +409,18 @@
     },
     {
       "lean": "lemma le_succ_self (a : mynat) : a ≤ succ a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "use (succ 0),\r\n--ring,\r\nrw add_succ,\r\nrw add_zero,\r\nrefl,"
     },
     {
       "lean": "theorem add_le_add_right {a b : mynat} : a ≤ b → ∀ t, (a + t) ≤ (b + t) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nintro t,\r\ncases h with k hk,\r\nuse k,\r\nrw add_comm (a + t) k,\r\nrw <- add_assoc,\r\nrw add_comm k a,\r\nrw hk,\r\nrefl,\r\n"
     },
     {
       "lean": "theorem le_of_succ_le_succ (a b : mynat) : succ a ≤ succ b → a ≤ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nhave j:= le_total a b,\r\ncases j,\r\nexact j,\r\n\r\nhave l := succ_le_succ b a j,\r\n\r\nhave k := le_antisymm (succ a) (succ b) h l,\r\nhave i := succ_inj k,\r\nrw i at j,\r\nrw i,\r\nexact j, --KKKKKKKKKKKKKKK"
     },
     {
       "lean": "theorem not_succ_le_self (a : mynat) : ¬ (succ a ≤ a) :=\n",
