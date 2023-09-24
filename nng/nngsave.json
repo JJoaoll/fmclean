@@ -424,7 +424,8 @@
     },
     {
       "lean": "theorem not_succ_le_self (a : mynat) : ¬ (succ a ≤ a) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nhave j:= le_succ_self a,\r\nhave l:= le_antisymm a (succ a) j h,\r\napply ne_succ_self a,\r\nexact l,\r\n\r\n\r\n--ne_succ_self"
     },
     {
       "lean": "theorem add_le_add_left {a b : mynat} (h : a ≤ b) (t : mynat) :\n  t + a ≤ t + b :=\n",
