@@ -429,19 +429,23 @@
     },
     {
       "lean": "theorem add_le_add_left {a b : mynat} (h : a ≤ b) (t : mynat) :\n  t + a ≤ t + b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases h with k h,\r\nuse k,\r\nrw add_assoc,\r\nrw <- h,\r\nrefl,\r\n\r\n"
     },
     {
       "lean": "lemma lt_aux_one (a b : mynat) : a ≤ b ∧ ¬ (b ≤ a) → succ a ≤ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\ncases h with ab nba,\r\nrw le_iff_exists_add at ab nba ⊢,\r\ncases ab with c hc,\r\ninduction c with c hc',\r\n  rw add_zero at hc,\r\n  exfalso,\r\n  apply nba,\r\n  use 0,\r\n  rw add_zero,\r\n  symmetry,\r\n  exact hc,\r\n\r\n  use c,\r\n  rw hc,\r\n  rw add_succ,\r\n  rw succ_add,\r\n  refl,\r\n  \r\n\r\n\r\n\r\n\r\n"
     },
     {
       "lean": "lemma lt_aux_two (a b : mynat) : succ a ≤ b → a ≤ b ∧ ¬ (b ≤ a) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nsplit,\r\n\r\n  cases h with k h,\r\n  rw le_iff_exists_add, --Thanks, Marcel!\r\n  use (succ k),\r\n  rw add_succ,\r\n  rw <- succ_add,\r\n  symmetry,\r\n  rw h,\r\n  refl,\r\n\r\n  --rw le_iff_exists_add at h ⊢,\r\n  intro j,\r\n  have n:= le_total a b,\r\n\r\n  cases n,\r\n    have m:= le_antisymm a b n j,\r\n    rw m at h,\r\n    apply not_succ_le_self b,\r\n    exact h,\r\n\r\n    have i:= le_succ (succ a) b h,\r\n    have i':= le_of_succ_le_succ a b i,\r\n    have m := le_antisymm a b i' j,\r\n    rw m at h,\r\n    apply not_succ_le_self b,\r\n    exact h,\r\n    \r\n   \r\n    \r\n\r\n\r\n\r\n"
     },
     {
       "lean": "lemma lt_iff_succ_le (a b : mynat) : a < b ↔ succ a ≤ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "split,\r\n  intro h,\r\n  have j:= lt_aux_one a b h,\r\n  exact j,\r\n\r\n  intro h,\r\n  have j:= lt_aux_two a b h,\r\n  exact j,\r\n\r\n  "
     }
   ]
 }
