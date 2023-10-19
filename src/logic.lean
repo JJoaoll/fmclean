@@ -52,6 +52,7 @@ theorem conj_comm :
   apply And.intro 
   exact And.right h
   exact And.left h
+
 ------------------------------------------------
 -- Proposições de interdefinabilidade dos →,∨:
 ------------------------------------------------
@@ -105,6 +106,7 @@ theorem contrapositive_law :
   apply Iff.intro 
   exact impl_as_contrapositive 
   exact impl_as_contrapositive_converse
+
 ------------------------------------------------
 -- A irrefutabilidade do LEM:
 ------------------------------------------------
@@ -117,35 +119,48 @@ theorem lem_irrefutable :
     intro p; 
     have h'': (P∨¬P) := by 
       apply Or.inl;
-
-
+      exact p;
+    exact h h''
+  exact h h'
 
 ------------------------------------------------
 -- A lei de Peirce
 ------------------------------------------------
 
 theorem peirce_law_weak :
-  ((P → Q) → P) → ¬¬P  :=
-begin
-  sorry,
-end
-
+  ((P → Q) → P) → ¬¬P  := by
+  intro h
+  intro np  
+  have h': (P -> Q) := by    
+    intro p
+    apply False.elim
+    exact np p    
+  have p := h h'
+  exact np p
 
 ------------------------------------------------
 -- Proposições de interdefinabilidade dos ∨,∧:
 ------------------------------------------------
 
 theorem disj_as_negconj :
-  P∨Q → ¬(¬P∧¬Q)  :=
-begin
-  sorry,
-end
-
+  P∨Q → ¬(¬P∧¬Q)  := by
+  intro h 
+  intro j 
+  apply Or.elim h
+  apply And.left j 
+  apply And.right j 
+  
 theorem conj_as_negdisj :
-  P∧Q → ¬(¬P∨¬Q)  :=
-begin
-  sorry,
-end
+  P∧Q → ¬(¬P∨¬Q)  := by
+  intro h
+  intro j 
+  apply Or.elim j
+  intro np
+  apply np
+  exact And.left h  
+  intro nq
+  apply nq
+  exact And.right h
 
 
 ------------------------------------------------
@@ -153,50 +168,104 @@ end
 ------------------------------------------------
 
 theorem demorgan_disj :
-  ¬(P∨Q) → (¬P ∧ ¬Q)  :=
-begin
-  sorry,
-end
+  ¬(P∨Q) → (¬P ∧ ¬Q)  := by
+  intro h 
+  apply And.intro 
+  intro j
+  have h': (P ∨ Q) := by 
+    apply Or.inl;
+    exact j
+  exact h h' 
+  intro q
+  have h': (P ∨ Q) := by 
+    apply Or.inr;
+    exact q
+  exact h h' 
 
 theorem demorgan_disj_converse :
-  (¬P ∧ ¬Q) → ¬(P∨Q)  :=
-begin
-  sorry,
-end
+  (¬P ∧ ¬Q) → ¬(P∨Q)  := by
+  intro h 
+  intro j 
+  apply Or.elim j 
+  intro p 
+  apply And.left h 
+  exact p 
+  intro q 
+  apply And.right h 
+  exact q 
 
 theorem demorgan_conj :
-  ¬(P∧Q) → (¬Q ∨ ¬P)  :=
-begin
-  sorry,
-end
+  ¬(P∧Q) → (¬Q ∨ ¬P)  := by
+  intro h 
+  by_cases p : P 
+  apply Or.inl 
+  intro q 
+  have h' : P ∧ Q := by
+    apply And.intro; 
+    exact p;
+    exact q 
+  exact h h' 
+  apply Or.inr 
+  exact p 
+
+  /-apply Or.inl 
+  intro q
+  have h' : ¬Q ∨ ¬P := by 
+    apply Or.inr;
+    intro p;
+    have h'' : P ∧ Q := by 
+      apply And.intro; 
+      exact p; 
+      exact q;
+    exact h h''  
+  apply h'.elim 
+  intro nq 
+  exact nq q 
+  intro np
+  by_cases p : P 
+  exact np p  -/
 
 theorem demorgan_conj_converse :
-  (¬Q ∨ ¬P) → ¬(P∧Q)  :=
-begin
-  sorry,
-end
+  (¬Q ∨ ¬P) → ¬(P∧Q)  := by
+  intro h 
+  intro mh 
+  apply h.elim
+  intro nq 
+  exact nq mh.right 
+  intro np 
+  exact np mh.left 
+
 
 theorem demorgan_conj_law :
-  ¬(P∧Q) ↔ (¬Q ∨ ¬P)  :=
-begin
-  sorry,
-end
+  ¬(P∧Q) ↔ (¬Q ∨ ¬P)  := by
+  apply Iff.intro 
+  intro h 
+  by_cases p : P 
+  apply Or.inl 
+  intro q
+  have peq: P ∧ Q := by 
+    apply And.intro;
+    exact p;
+    exact q;
+  exact h peq 
+  apply Or.inr
+  intro p'
+  exact p p' 
+  exact demorgan_conj_converse  
+
 
 theorem demorgan_disj_law :
-  ¬(P∨Q) ↔ (¬P ∧ ¬Q)  :=
-begin
-  sorry,
-end
-
+  ¬(P∨Q) ↔ (¬P ∧ ¬Q)  := by
+  apply Iff.intro 
+  apply demorgan_disj 
+  apply demorgan_disj_converse
 ------------------------------------------------
 -- Proposições de distributividade dos ∨,∧:
 ------------------------------------------------
 
 theorem distr_conj_disj :
   P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
-begin
-  sorry,
-end
+  
 
 theorem distr_conj_disj_converse :
   (P∧Q)∨(P∧R) → P∧(Q∨R)  :=
