@@ -264,14 +264,30 @@ theorem demorgan_disj_law :
 ------------------------------------------------
 
 theorem distr_conj_disj :
-  P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
+  P∧(Q∨R) → (P∧Q)∨(P∧R)  := by
+  intro h
+  have j := h.right
+  have p := h.left
+  apply j.elim 
+  intro q 
+  apply Or.inl 
+  apply And.intro 
+  exact p 
+  exact q 
+  intro r 
+  apply Or.inr 
+  apply And.intro
+  exact p 
+  exact r 
+
+  
+  apply Or.inr
+
   
 
 theorem distr_conj_disj_converse :
-  (P∧Q)∨(P∧R) → P∧(Q∨R)  :=
-begin
-  sorry,
-end
+  (P∧Q)∨(P∧R) → P∧(Q∨R)  := by
+
 
 theorem distr_disj_conj :
   P∨(Q∧R) → (P∨Q)∧(P∨R)  :=
