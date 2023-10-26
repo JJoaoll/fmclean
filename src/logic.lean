@@ -658,7 +658,7 @@ theorem exists_conj_as_conj_exists_converse :
   (∃x, P x) ∧ (∃x, Q x) → (∃x, P x ∧ Q x)  :=
 begin
 end
-
+Achei legal
 ---------------------------------------------- -/
 
 end predicate
